@@ -80,7 +80,23 @@ CurriculumManager_i18n_init();
 // Next, run the version check.
 // If it is successful, continue with initialization for this plugin
 if (CurriculumManager_PhpVersionCheck()) {
+
+    if ( !class_exists( 'ReduxFramework' ) ) {
+      require_once( dirname( __FILE__ ) . '/redux-framework/ReduxCore/framework.php' );
+      require_once( dirname( __FILE__ ) . '/CurriculumManager_ReduxInit.php' );
+    }
+
     // Only load and run the init function if we know PHP version can parse it
     include_once('curriculum-manager_init.php');
     CurriculumManager_init(__FILE__);
+}
+
+add_action('init', 'removeDemoModeLink');
+function removeDemoModeLink() { // Be sure to rename this function to something more unique
+    if ( class_exists('ReduxFrameworkPlugin') ) {
+        remove_filter( 'plugin_row_meta', array( ReduxFrameworkPlugin::get_instance(), 'plugin_metalinks'), null, 2 );
+    }
+    if ( class_exists('ReduxFrameworkPlugin') ) {
+        remove_action('admin_notices', array( ReduxFrameworkPlugin::get_instance(), 'admin_notices' ) );
+    }
 }
