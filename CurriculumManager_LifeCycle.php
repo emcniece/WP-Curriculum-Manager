@@ -121,7 +121,7 @@ class CurriculumManager_LifeCycle extends CurriculumManager_InstallIndicator {
      * @return void
      */
     public function addSettingsSubMenuPage() {
-        $this->addSettingsSubMenuPageToPluginsMenu();
+        //$this->addSettingsSubMenuPageToPluginsMenu();
         //$this->addSettingsSubMenuPageToSettingsMenu();
     }
 

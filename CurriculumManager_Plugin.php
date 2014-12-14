@@ -2,6 +2,8 @@
 
 
 include_once('CurriculumManager_LifeCycle.php');
+foreach(glob(dirname(__FILE__).'/include/*.php') as $file) include_once($file);
+
 
 class CurriculumManager_Plugin extends CurriculumManager_LifeCycle {
 
@@ -11,6 +13,8 @@ class CurriculumManager_Plugin extends CurriculumManager_LifeCycle {
      */
     public function getOptionMetaData() {
         //  http://plugin.michael-simpson.com/?page_id=31
+        return false;
+        /*
         return array(
             //'_version' => array('Installed Version'), // Leave this one commented-out. Uncomment to test upgrades.
             'ATextInput' => array(__('Enter in some text', 'my-awesome-plugin')),
@@ -18,6 +22,7 @@ class CurriculumManager_Plugin extends CurriculumManager_LifeCycle {
             'CanSeeSubmitData' => array(__('Can See Submission data', 'my-awesome-plugin'),
                                         'Administrator', 'Editor', 'Author', 'Contributor', 'Subscriber', 'Anyone')
         );
+        */
     }
 
 //    protected function getOptionValueI18nString($optionValue) {
